@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Buddy AI</title>
+  <style>
+    body {
+      background-color: #4BA180;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      padding: 2em;
+    }
+    h2 {
+      margin-bottom: 1em;
+    }
+    #promptInput {
+      width: 70%;
+      padding: 0.5em;
+      font-size: 1em;
+      border-radius: 5px;
+      border: none;
+      margin-right: 1em;
+      box-sizing: border-box;
+    }
+    #submitButton {
+      padding: 0.5em 1.2em;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background-color: #2e7d5e;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #submitButton:hover {
+      background-color: #276a50;
+    }
+    #response {
+      margin-top: 1.5em;
+      padding: 1em;
+      border-radius: 6px;
+      background-color: transparent;
+      color: #ffffff;
+      white-space: pre-wrap;
+      font-family: 'Courier New', Courier, monospace;
+      min-height: 4em;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #response.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h2>Study Buddy AI</h2>
 
+  <input type="text" id="promptInput" placeholder="Enter your math or CS question" />
+  <button id="submitButton">Submit</button>
+
+  <pre id="response"></pre>
+
+  <script>
+    const btn = document.getElementById('submitButton');
+    const input = document.getElementById('promptInput');
+    const responseEl = document.getElementById('response');
+
+    btn.addEventListener('click', () => {
+      const prompt = input.value.trim();
+      if (!prompt) {
+        alert('Please enter a prompt.');
+        return;
+      }
+
+      responseEl.classList.remove('error');
+      responseEl.textContent = 'Thinking...';
+
+      fetch('/solve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: prompt }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        responseEl.classList.remove('error');
+        responseEl.textContent = data.answer || 'No answer received.';
+      })
+      .catch(err => {
+        responseEl.classList.add('error');
+        responseEl.textContent = 'Error: ' + err.message;
+      });
+    });
+  </script>
+</body>
+</html>
