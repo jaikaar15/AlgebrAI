@@ -4,7 +4,7 @@ This is a Flask app that uses OpenAI's GPT to solve math problems step-by-step.
 
 ## Setup
 
-- Requires Python 3.x
+- Requires Python 3.13
 - Install dependencies with `pip install -r requirements.txt`
 - Set your OpenAI API key as environment variable `OPENAI_API_KEY`
 
