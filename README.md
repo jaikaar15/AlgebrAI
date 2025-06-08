@@ -1,6 +1,6 @@
 # Math Solver API
 
-This is a Flask app that uses OpenAI's GPT to solve math problems step-by-step.
+This is a Flask app that uses Groq's API to solve math problems step-by-step.
 
 ## Setup
 
