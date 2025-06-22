@@ -11,5 +11,5 @@ This is a Flask app that uses Groq's API to solve math problems step-by-step.
 ## Running locally
 
 ```bash
-export OPENAI_API_KEY="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"
+export GROQ_API_KEY="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"
 flask run
