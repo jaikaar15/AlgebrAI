@@ -6,7 +6,7 @@ This is a Flask app that uses Groq's API to solve math problems step-by-step.
 
 - Requires Python 3.13
 - Install dependencies with `pip install -r requirements.txt`
-- Set your OpenAI API key as environment variable `OPENAI_API_KEY`
+- Set your API key as environment variable `GROQ_API_KEY`
 
 ## Running locally
 
